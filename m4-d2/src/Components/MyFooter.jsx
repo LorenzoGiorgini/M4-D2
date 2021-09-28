@@ -1,7 +1,6 @@
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import Container from "react-bootstrap/Container"
-import Navbar from "react-bootstrap/Navbar"
 
 const MyFooter = () => (
     <Container fluid className="footer-bg">

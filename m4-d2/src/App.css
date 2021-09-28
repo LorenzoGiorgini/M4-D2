@@ -1,0 +1,12 @@
+.align-text {
+    text-align: center;
+    margin-top: 15px;
+    color: white;
+}
+
+.footer-bg {
+    background: #343A40;
+    position: fixed;
+    bottom: 0;
+    height: 15vh;
+}

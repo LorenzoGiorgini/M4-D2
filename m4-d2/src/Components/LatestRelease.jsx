@@ -30,24 +30,22 @@ class LatestRelease extends Component {
     render() {
         return (
             <Container fluid>
-                <Col>
-                    <Dropdown>
-                        <Dropdown.Toggle variant="success" id="dropdown-basic">
-                            {
-                                this.state.genre
-                            }
-                        </Dropdown.Toggle>
+                <Dropdown>
+                    <Dropdown.Toggle variant="success" id="dropdown-basic">
+                        {
+                            this.state.genre
+                        }
+                    </Dropdown.Toggle>
 
-                        <Dropdown.Menu>
-                            {
-                                category.map((cat , i) => (
-                                    <Dropdown.Item key={i} onClick={() => this.setState({category: cat.content , genre: cat.genre})}>{cat.genre}</Dropdown.Item>
-                                ))
-                            }
-                        </Dropdown.Menu>
-                    </Dropdown>
-                </Col>
-                <Row>
+                    <Dropdown.Menu>
+                        {
+                            category.map((cat , i) => (
+                                <Dropdown.Item key={i} onClick={() => this.setState({category: cat.content , genre: cat.genre})}>{cat.genre}</Dropdown.Item>
+                            ))
+                        }
+                    </Dropdown.Menu>
+                </Dropdown>
+                <Row className="row-modified">
                     {
                         this.state.category.map(books => (
                             <Col>

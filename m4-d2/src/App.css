@@ -14,8 +14,8 @@
     height: 300px;
 }
 
-.row {
-    justify-content: center;
+.row-modified {
+    justify-content: space-between;
 }
 
 .col {

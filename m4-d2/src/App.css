@@ -22,3 +22,8 @@
     flex-grow: 0!important;
     margin-bottom: 30px;
 }
+
+
+.card-on-top {
+    z-index: 999;
+}

@@ -11,6 +11,7 @@ const MyJumbo = () => (
     <p>
       <Button variant="primary">Learn more</Button>
     </p>
+    
   </Jumbotron>
 );
 

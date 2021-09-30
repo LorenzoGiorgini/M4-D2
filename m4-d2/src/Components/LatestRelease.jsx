@@ -74,7 +74,7 @@ class LatestRelease extends Component {
           </Dropdown.Menu>
         </Dropdown>
         <Row className="row-modified">
-          {this.state.category.map((books) => (
+          {this.state.category.map((book) => (
             <Col>
               <Card
                 className="card-styled"
@@ -84,22 +84,20 @@ class LatestRelease extends Component {
                 //     id: books.asin,
                 //     clicked: true,
                 //   });
-                  this.fetchedData(books);
+                  this.fetchedData(book);
                 }}
               >
                 <Card.Img
                   className="card-styled"
-                  key={books.asin}
+                  key={book.asin}
                   variant="top"
-                  src={books.img}
+                  src={book.img}
                 />
-                <Col className="card-styled card-on-top">
-                  {this.state.fetched.length>0? (
-                    <CommentArea selectedBook={this.state.fetched} />
-                  ) : (
-                    <></>
-                  )}
-                </Col>
+                {
+                this.state.fetched[0]?.elementId === book.asin  ? 
+                (<CommentArea selectedBook={this.state.fetched} />) 
+                : (<></>)
+                }
               </Card>
             </Col>
           ))}

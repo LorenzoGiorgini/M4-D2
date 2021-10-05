@@ -5,15 +5,14 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Dropdown from "react-bootstrap/Dropdown";
 import CommentArea from "./CommentArea";
-import AddComment from "./AddComment"
-
-
+import AddComment from "./AddComment";
 
 import horror from "../Data/horror.json";
 import history from "../Data/history.json";
 import fantasy from "../Data/fantasy.json";
 import romance from "../Data/romance.json";
 import scifi from "../Data/scifi.json";
+import SingleBook from "./SingleBook";
 
 let category = [
   { genre: "Horror", content: horror },
@@ -27,35 +26,11 @@ class LatestRelease extends Component {
   state = {
     category: category[0].content,
     genre: category[0].genre,
-    selectedBook: null,
-    fetched: []
+    fetched: [],
+    selected: false,
   };
 
-  fetchedData = async (book) => {
-    try {
-      let response = await fetch(
-        "https://striveschool-api.herokuapp.com/api/comments/" + book.asin,
-        {
-          method: "GET",
-          headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTRiMWNlNjRiYjUzZDAwMTViMTllY2UiLCJpYXQiOjE2MzMwMDcyNjMsImV4cCI6MTYzNDIxNjg2M30.ZDL9OTcshlBWLagtOW6g0Sey_vs6vdIstYnehUcg4FY",
-          },
-        }
-      );
-      if (response.ok) {
-        let data = await response.json();
-        console.log({data});
-        this.setState({
-          fetched: data,
-        });
-      } else {
-        console.error("error");
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  
 
   render() {
     return (
@@ -79,29 +54,25 @@ class LatestRelease extends Component {
         <Row className="row-modified">
           {this.state.category.map((book) => (
             <Col>
-              <Card
-                className="card-styled"
-                onClick={() => {
-                  this.fetchedData(book);
-                }}
-              >
-                <Card.Img
-                  className="card-styled"
-                  key={book.asin}
-                  variant="top"
-                  src={book.img}
-                />
-                {
-                this.state.fetched[0]?.elementId === book.asin  ? 
+              <SingleBook books={book}/>
+              {this.state.selected && (
+                  <div className="card-on-top">
+                    <AddComment asinOfBook={this.state.fetched[0]?.elementId} />
+                    {this.state.fetched.length > 0 && (
+                      <CommentArea selectedBook={this.state.fetched} />
+                    )}
+                  </div>
+                )}
+                {/* {
+                this.state.fetched[0]?.elementId === book.asin  && this.state.selected ?
                 (
                   <div className="card-on-top">
-                    <AddComment asinOfBook={this.state.fetched[0]?.elementId}/>
+                    <AddComment asinOfBook={this.state.fetched[0]?.elementId} />
                     <CommentArea selectedBook={this.state.fetched} />
                   </div>
                 ) 
                 : (<></>)
-                }
-              </Card>
+                } */}
             </Col>
           ))}
         </Row>

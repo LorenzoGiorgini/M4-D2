@@ -5,6 +5,9 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Dropdown from "react-bootstrap/Dropdown";
 import CommentArea from "./CommentArea";
+import AddComment from "./AddComment"
+
+
 
 import horror from "../Data/horror.json";
 import history from "../Data/history.json";
@@ -79,11 +82,6 @@ class LatestRelease extends Component {
               <Card
                 className="card-styled"
                 onClick={() => {
-                //   this.setState({
-                //     selectedBook: books,
-                //     id: books.asin,
-                //     clicked: true,
-                //   });
                   this.fetchedData(book);
                 }}
               >
@@ -95,7 +93,12 @@ class LatestRelease extends Component {
                 />
                 {
                 this.state.fetched[0]?.elementId === book.asin  ? 
-                (<CommentArea selectedBook={this.state.fetched} />) 
+                (
+                  <div className="card-on-top">
+                    <AddComment asinOfBook={this.state.fetched[0]?.elementId}/>
+                    <CommentArea selectedBook={this.state.fetched} />
+                  </div>
+                ) 
                 : (<></>)
                 }
               </Card>
